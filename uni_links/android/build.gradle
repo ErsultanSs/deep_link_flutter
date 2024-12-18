@@ -23,6 +23,8 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
+    namespace 'name.avioli.uni_links'
+
 
     defaultConfig {
         minSdkVersion 16
