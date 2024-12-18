@@ -28,6 +28,7 @@ android {
 
     defaultConfig {
         minSdkVersion 28
+        ndkVersion = "26.1.10909125"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
