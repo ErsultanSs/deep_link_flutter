@@ -22,12 +22,12 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 34
     namespace 'name.avioli.uni_links'
 
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 28
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
