@@ -4,36 +4,62 @@ version '0.4.0'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral() // Replace jcenter with mavenCentral
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:8.1.2' // Updated AGP version
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
-    namespace 'name.avioli.uni_links'
-
+    namespace 'name.avioli.unilinks' // Explicit namespace
+    compileSdkVersion 34 // Updated to API level 34
 
     defaultConfig {
-        minSdkVersion 28
-        ndkVersion = "26.1.10909125"
+        minSdkVersion 21 // Lowered to 21 for compatibility
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndkVersion "26.1.10909125"
     }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.appcompat:appcompat:1.6.1'
+            force 'androidx.core:core-ktx:1.10.1'
+            force 'com.google.android.material:material:1.9.0'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.annotation:annotation:1.6.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
